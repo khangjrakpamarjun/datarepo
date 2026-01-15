@@ -1,0 +1,132 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+#
+# We support interacting with a variety of data stores including local file systems, cloud, network and HDFS
+
+
+# companies:
+#   type: pandas.CSVDataset
+#   filepath: s3://warehouse/raw/companies.csv
+#   credentials: minio_s3
+
+# reviews:
+#   type: pandas.CSVDataset
+#   filepath: s3://warehouse/raw/reviews.csv
+#   credentials: minio_s3
+
+# shuttles:
+#   type: pandas.ExcelDataset
+#   filepath: s3://warehouse/raw/shuttles.xlsx
+#   credentials: minio_s3
+#   load_args:
+#     engine: openpyxl
+#     sheet_name: 0
+
+# preprocessed_companies:
+#   type: pandas.ParquetDataset
+#   filepath: s3://warehouse/02_intermediate/preprocessed_companies.parquet
+#   credentials: minio_s3
+
+# preprocessed_shuttles:
+#   type: pandas.ParquetDataset
+#   filepath: s3://warehouse/02_intermediate/preprocessed_shuttles.parquet
+#   credentials: minio_s3
+
+# model_input_table:
+#   type: pandas.ParquetDataset
+#   filepath: s3://warehouse/03_primary/model_input_table.parquet
+#   credentials: minio_s3
+
+# regressor:
+#   type: pickle.PickleDataset
+#   filepath: s3://warehouse/06_models/regressor.pickle
+#   credentials: minio_s3
+#   versioned: true 
+
+# shuttle_passenger_capacity_plot_exp:
+#   type: plotly.PlotlyDataset
+#   filepath: s3://warehouse/08_reporting/shuttle_passenger_capacity_plot_exp.json  
+#   credentials: minio_s3
+#   versioned: true
+#   plotly_args:
+#     type: bar
+#     fig:
+#       x: shuttle_type 
+#       y: passenger_capacity
+#       orientation: h
+#     layout:
+#       xaxis_title: Shuttles
+#       yaxis_title: Average passenger capacity
+#       title: Shuttle Passenger capacity   
+
+# shuttle_passenger_capacity_plot_go:
+#   type: plotly.JSONDataset      
+#   filepath: s3://warehouse/08_reporting/shuttle_passenger_capacity_plot_go.json
+#   credentials: minio_s3
+#   versioned: true       
+
+# dummy_confusion_matrix:
+#   type: matplotlib.MatplotlibDataset
+#   filepath: s3://warehouse/08_reporting/dummy_confusion_matrix.png
+#   credentials: minio_s3
+#   versioned: true
+
+##########################################################################
+
+companies:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/companies.csv
+
+reviews:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/reviews.csv
+
+shuttles:
+  type: pandas.ExcelDataset
+  filepath: data/01_raw/shuttles.xlsx
+  load_args:
+    engine: openpyxl
+
+preprocessed_companies:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/preprocessed_companies.parquet
+
+preprocessed_shuttles:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/preprocessed_shuttles.parquet
+
+model_input_table:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/model_input_table.parquet
+
+regressor:
+  type: pickle.PickleDataset
+  filepath: data/06_models/regressor.pickle
+  versioned: true
+
+shuttle_passenger_capacity_plot_exp:
+  type: plotly.PlotlyDataset
+  filepath: data/08_reporting/shuttle_passenger_capacity_plot_exp.json
+  versioned: true
+  plotly_args:
+    type: bar
+    fig:
+      x: shuttle_type
+      y: passenger_capacity
+      orientation: h
+    layout:
+      xaxis_title: Shuttles
+      yaxis_title: Average passenger capacity
+      title: Shuttle Passenger capacity
+
+shuttle_passenger_capacity_plot_go:
+  type: plotly.JSONDataset
+  filepath: data/08_reporting/shuttle_passenger_capacity_plot_go.json
+  versioned: true
+
+dummy_confusion_matrix:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/dummy_confusion_matrix.png
+  versioned: true

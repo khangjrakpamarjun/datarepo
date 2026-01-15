@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+# ignore everything in the following folders
+data/**
+
+data*
+
+
